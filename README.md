@@ -1,3 +1,8 @@
+# SmartGrid-Plus
+AI-powered electricity billing and smart grid management system with analytics, predictions, and automation.
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
