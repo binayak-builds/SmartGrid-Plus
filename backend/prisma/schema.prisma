@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id           Int       @id @default(autoincrement())
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  email        String    @unique
+  phone        String?
+  propertyType String?   @map("property_type")
+  location     String?
+  sqft         Int?
+  occupants    Int?
+  plan         String    @default("SmartGrid+ Basic")
+  gridTier     String    @default("Tier 1 — Consumer") @map("grid_tier")
+  solarSystem  String?   @map("solar_system")
+  battery      String?
+  savingsGoal  Int       @default(20) @map("savings_goal")
+  priority     String    @default("balanced")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  login         Login?
+  meters        MeterInfo[]
+  bills         Bill[]
+  payments      Payment[]
+  usageRecords  Usage[]
+  notifications Notification[]
+
+  @@map("customers")
+}
+
+model Login {
+  id           Int       @id @default(autoincrement())
+  customerId   Int       @unique @map("customer_id")
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  role         String    @default("user")
+  lastLogin    DateTime? @map("last_login")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("logins")
+}
+
+model MeterInfo {
+  id               Int      @id @default(autoincrement())
+  customerId       Int      @map("customer_id")
+  meterNumber      String   @unique @map("meter_number")
+  installationDate DateTime @default(now()) @map("installation_date")
+  status           String   @default("active")
+
+  customer     Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  usageRecords Usage[]
+
+  @@map("meter_info")
+}
+
+model Bill {
+  id            Int       @id @default(autoincrement())
+  customerId    Int       @map("customer_id")
+  billingPeriod String    @map("billing_period")
+  unitsConsumed Float     @map("units_consumed")
+  costPerUnit   Float     @default(0.12) @map("cost_per_unit")
+  subtotal      Float
+  taxAmount     Float     @map("tax_amount")
+  totalAmount   Float     @map("total_amount")
+  status        String    @default("unpaid")
+  dueDate       DateTime  @map("due_date")
+  paidDate      DateTime? @map("paid_date")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  customer Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  payments Payment[]
+
+  @@map("bills")
+}
+
+model Tax {
+  id     Int     @id @default(autoincrement())
+  name   String
+  rate   Float
+  active Boolean @default(true)
+
+  @@map("taxes")
+}
+
+model Payment {
+  id            Int      @id @default(autoincrement())
+  billId        Int      @map("bill_id")
+  customerId    Int      @map("customer_id")
+  amount        Float
+  paymentMethod String   @default("autopay") @map("payment_method")
+  transactionId String   @unique @map("transaction_id")
+  status        String   @default("completed")
+  paidAt        DateTime @default(now()) @map("paid_at")
+
+  bill     Bill     @relation(fields: [billId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model Usage {
+  id                 Int      @id @default(autoincrement())
+  customerId         Int      @map("customer_id")
+  meterId            Int?     @map("meter_id")
+  timestamp          DateTime @default(now())
+  consumptionKwh     Float    @map("consumption_kwh")
+  solarGenerationKwh Float    @default(0) @map("solar_generation_kwh")
+  batteryLevel       Float    @default(0) @map("battery_level")
+  peakDemandKw       Float    @default(0) @map("peak_demand_kw")
+
+  customer Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  meter    MeterInfo? @relation(fields: [meterId], references: [id], onDelete: SetNull)
+
+  @@map("usage")
+}
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  customerId Int      @map("customer_id")
+  type       String
+  title      String
+  message    String   @db.Text
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}

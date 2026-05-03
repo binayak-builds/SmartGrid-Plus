@@ -1,0 +1,133 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 24px;
+  margin-bottom: 8px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  min-width: 220px;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topbar-search:focus-within {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.topbar-search .material-symbols-outlined {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 18px;
+}
+
+.topbar-search-input {
+  flex: 1;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.topbar-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.search-shortcut {
+  font-family: var(--font-family);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.topbar-icon {
+  position: relative;
+  color: rgba(255, 255, 255, 0.5);
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topbar-icon .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.topbar-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  background: #3b82f6;
+  border-radius: 50%;
+  border: 1.5px solid #050505;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+}
+
+/* Topbar tabs for admin dashboard */
+.topbar-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.topbar-tab {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topbar-tab:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.topbar-tab.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: #7ab4ff;
+}
+
+@media (max-width: 768px) {
+  .topbar-search { display: none; }
+}

@@ -1,0 +1,114 @@
+.public-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.public-content {
+  flex: 1;
+  padding-top: 64px;
+}
+
+/* Footer */
+.public-footer {
+  background: var(--surface-container-lowest);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: var(--space-16) var(--space-12) var(--space-8);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-bottom: var(--space-12);
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.footer-logo .material-symbols-outlined {
+  color: var(--primary-raw);
+  font-size: 22px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-16);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-bottom: var(--space-2);
+}
+
+.footer-col a {
+  font-size: 14px;
+  color: var(--outline);
+  transition: color var(--duration-fast) var(--ease-premium);
+}
+
+.footer-col a:hover {
+  color: var(--on-surface);
+}
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--outline);
+}
+
+.footer-bottom a {
+  color: var(--outline);
+  transition: color var(--duration-fast) var(--ease-premium);
+}
+
+.footer-bottom a:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .footer-links {
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+  .public-footer {
+    padding: var(--space-10) var(--space-5) var(--space-6);
+  }
+}

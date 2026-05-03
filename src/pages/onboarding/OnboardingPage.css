@@ -1,0 +1,225 @@
+.onboarding-card {
+  width: 100%;
+  max-width: 600px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  animation: fadeInUp 0.5s var(--ease-premium) forwards;
+}
+
+.onboarding-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.onboarding-desc {
+  font-size: 15px;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--surface-container);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all var(--duration-fast) var(--ease-premium);
+  cursor: pointer;
+}
+
+.option-card:hover {
+  border-color: var(--primary-raw);
+  background: var(--surface-container-high);
+  transform: translateY(-2px);
+}
+
+.option-card:focus {
+  border-color: var(--primary-raw);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+.option-icon {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+.option-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.option-desc {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.appliance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.appliance-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-container);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--duration-fast) var(--ease-premium);
+  cursor: pointer;
+}
+
+.appliance-item:hover {
+  border-color: var(--primary-raw);
+  background: var(--surface-container-high);
+}
+
+.appliance-item .material-symbols-outlined {
+  color: var(--primary);
+  font-size: 22px;
+}
+
+.range-input {
+  width: 100%;
+  height: 6px;
+  accent-color: var(--primary-raw);
+  cursor: pointer;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--outline);
+  margin-top: var(--space-1);
+}
+
+.onboarding-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-4);
+}
+
+/* AI Processing */
+.processing-card {
+  align-items: center;
+  text-align: center;
+}
+
+.processing-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.processing-ring {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid transparent;
+  border-top-color: var(--primary-raw);
+  border-radius: var(--radius-full);
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--surface-container-high);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-raw), var(--secondary));
+  border-radius: var(--radius-full);
+  transition: width 0.15s linear;
+}
+
+.progress-percent {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 40px;
+}
+
+.processing-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* Selected states */
+.option-card.selected {
+  border-color: var(--primary-raw);
+  background: rgba(0, 122, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+.option-check {
+  color: var(--primary-raw);
+  margin-top: var(--space-1);
+}
+
+.appliance-item.selected {
+  border-color: var(--primary-raw);
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.appliance-item .appliance-check {
+  margin-left: auto;
+  color: var(--primary-raw);
+}
+
+.btn-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .onboarding-card { padding: var(--space-6); }
+  .option-grid, .appliance-grid { grid-template-columns: 1fr; }
+}
